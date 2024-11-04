@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Roboto:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+    <title>Lift Simulation</title>
+</head>
+<body>
+    <div class="formDiv">
+        <form>
+            <div class="inputDiv">
+                <label for="liftLabel">Number of Lifts</label>
+                <input type="text" class="liftInput" id="lift">
+            </div>
+            
+            <div class="inputDiv">
+                <label for="floorLabel">Number of Floors</label>
+                <input type="text" class="floorInput" id="floor">
+            </div>
+            
+            <div>
+                <button class="submit" id ='submit' onclick="submitForm(event)">Submit</button>
+                <button class="submit" onclick="reset()">Reset</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="simulationCanvas"></div>
+</body>
+<script src="index.js"></script>
+</html>

@@ -1,0 +1,123 @@
+/* setting body  */
+body{
+    font-family: "Roboto", serif;
+    background-color: #023047;
+    color: white;
+}
+
+/* form styling */
+.formDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+}
+
+.formDiv>form{
+    box-shadow: 0px 0px 15px 5px #8ecae6;
+    border-radius: 12px;
+    padding: 12px;
+    margin-top: 10px;
+}
+
+.inputDiv{
+    margin: 40px 0px;
+}
+
+.inputDiv>input{
+    outline: none;
+    padding: 6px 3px;
+    right: 0;
+}
+
+.submit{
+    display: block;
+    font-size: large;
+    background-color: #219ebc;
+    color: white;
+    padding: 6px 30px;
+    border: none;
+    border-radius: 4px;
+    margin: 30px auto;
+}
+
+
+/* floor and lift styling */
+.floor{
+    height: 10rem;    
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid white;
+}
+
+.allLifts{
+    display: flex;
+    justify-content: space-around;
+}
+
+.button{
+    width: 20vw;
+}
+
+.allLifts{
+    width: 80vw;
+}
+
+.upButton{
+    background-color: #fb8500;
+    color: white;
+    padding: 1em 2em;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.upButton:disabled{
+    background-color: #a07e29;
+    cursor: default;
+}
+
+.downButton{
+    background-color: #ffb703;
+    color: white;
+    padding: 1em 2em;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+.downButton:disabled{
+    background-color: #a07e29;
+    cursor: default;
+}
+
+.lift{
+    margin-top: 20px;
+    display: flex;
+    position: relative;
+    bottom: 0px;
+    border: 1px solid #8ecae6;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+
+.door{
+    width: 4rem;
+    height: 8rem;
+    margin: 0px 1px;
+    border-radius: 3px;
+    background-color: #8ecae6;
+}
+
+.leftDoor{
+    transition: all 2.5s;
+    position: relative;
+    left: 0px;
+}
+
+.rightDoor{
+    transition: all 2.5s;
+    position: relative;
+    right: 0px;
+}
