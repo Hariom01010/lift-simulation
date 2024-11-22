@@ -6,8 +6,12 @@ let engineData = {}
 
 const submitForm = (e)=>{
     e.preventDefault()
+
+    // Disables the submit button after creating the simulation
     let submit = document.getElementById('submit')
     submit.setAttribute('disabled', true)
+
+    // get the value of floor and lift submitted
     floor = document.getElementById('floor').value
     lift = document.getElementById('lift').value
     console.log("Number of Floor: ", floor)
@@ -18,8 +22,7 @@ const submitForm = (e)=>{
 }
 
 const createFloors = (numsOfFloor)=>{
-    for(let i = numsOfFloor; i > 0; i--){
-        
+    for(let i = numsOfFloor; i > 0; i--){  
         // adding floors to engineData
         engineData[i] = {}
 
@@ -28,7 +31,7 @@ const createFloors = (numsOfFloor)=>{
         floorDiv.setAttribute('id', `floor${i}`)
         floorDiv.setAttribute('class', `floor`)
 
-
+        // div for the buttons
         const buttonDiv = document.createElement('div')
         buttonDiv.setAttribute('class', 'buttons')
 
@@ -37,16 +40,17 @@ const createFloors = (numsOfFloor)=>{
         upButton.setAttribute('class', 'upButton')
         upButton.innerHTML = 'UP'
         upButton.addEventListener('click', ()=>moveup(i))
+        // Disabling the UP button for the lift at the ground floor
         if(i == 1){
             upButton.setAttribute('disabled', 'true')
         }
-
 
         // DOWN Button
         const downButton = document.createElement('button')
         downButton.setAttribute('class', 'downButton')
         downButton.innerHTML = 'DOWN'
         downButton.addEventListener('click', ()=>movedown(i))
+        // Disabling the DOWN button for the topmost floor
         if(i == numsOfFloor){
             downButton.setAttribute('disabled', 'true')
         }
@@ -133,19 +137,27 @@ const moveup = (floorId)=>{
         lift.style.transition = `all ${(minDistance)*2}s`
         lift.style.bottom = `${(floorId-1)*10}rem`
 
+        leftDoor.style.transition = "left 2.5s";
+        rightDoor.style.transition = "right 2.5s";
+
+        // opens gate after lift reaches the floor
         setTimeout(()=>{
             leftDoor.style.left = `-100px`
             rightDoor.style.right = `-100px`
         }, ((minDistance)*2000))
 
+        // Closes gate after lift reaches the floor and doors open
         setTimeout(()=>{
             leftDoor.style.left = `0px`
             rightDoor.style.right = `0px`
-
-            engineData[floorId][liftNo] = 'available'
-            delete engineData[closestFloorWithLift][liftNo]
-            console.log(engineData)
         }, ((minDistance)*2000 + 2500))    
+
+        // mark the lift as available in the engineDData for future requests
+        setTimeout(()=>{
+            delete engineData[closestFloorWithLift][liftNo]
+            engineData[floorId][liftNo] = 'available'
+            console.log(engineData)
+        }, ((minDistance)*2000 + 5000))
     }
 }
 
@@ -180,9 +192,13 @@ const movedown = (floorId)=>{
         let leftDoor = lift.querySelector('#leftDoor')
         let rightDoor = lift.querySelector('#rightDoor')
 
+        // css styling to move the lift to the destination floor
         lift.style.position = 'relative'
         lift.style.transition = `all ${(minDistance)*2}s`
         lift.style.bottom = `${(floorId-1)*10}rem`
+
+        leftDoor.style.transition = "left 2.5s";
+        rightDoor.style.transition = "right 2.5s";
 
         setTimeout(()=>{
             leftDoor.style.left = `-100px`
@@ -193,10 +209,13 @@ const movedown = (floorId)=>{
             leftDoor.style.left = `0px`
             rightDoor.style.right = `0px`
 
-            engineData[floorId][liftNo] = 'available'
-            delete engineData[closestFloorWithLift][liftNo]
-            console.log(engineData)
         }, ((minDistance)*2000 + 2500))
+
+        setTimeout(()=>{
+            delete engineData[closestFloorWithLift][liftNo]
+            engineData[floorId][liftNo] = 'available'
+            console.log(engineData)
+        }, ((minDistance)*2000 + 5000))
     }
 }
 
